@@ -52,23 +52,26 @@ namespace pandemic {
     }
 
     Player& Player::fly_direct(const City& town) {
-        cout << " Player->fly_direct( "+ Sity::toString(town)+ " )" << endl; 
-        if (cards[town]){
+        cout << " Player->fly_direct( "+ Sity::toString(town)+ " )" << endl;
+        if (this->town == town){throw invalid_argument("Cannot Fly there !, We Are Already Here"); } 
+        else if (cards[town]){
             this->town = town;
         }else { throw invalid_argument("We Do not have the Card: " + Sity::toString(town) + " Cannot use fly_direct()");}
         return *this;
     }
     Player& Player::fly_charter(const City& town) {
         cout << " Player->fly_charter( "+ Sity::toString(town)+ " )" << endl; 
-        if (cards[this->town]){
+        if (this->town == town){throw invalid_argument("Cannot Fly there !, We Are Already Here"); }
+        else if (cards[this->town]){
             this->town = town;
         }else{ throw invalid_argument("We Do not have the Card: " + Sity::toString(this->town)+ " Cannot use fly_charter()");}
         
         return *this;
     }
     Player& Player::fly_shuttle(const City& town) {
-        cout << " Player->fly_shuttle( "+ Sity::toString(town)+ " )" << endl; 
-        if (game.getResearchS(this->town)){
+        cout << " Player->fly_shuttle( "+ Sity::toString(town)+ " )" << endl;
+        if (this->town == town){throw invalid_argument("Cannot Fly there !, We Are Already Here"); } 
+        else if (game.getResearchS(this->town)){
             if (game.getResearchS(town)){
                 this->town = town;
             }else{ throw invalid_argument("No Research Station in: " + Sity::toString(town) + " Cannot use fly_shuttle()");}  
