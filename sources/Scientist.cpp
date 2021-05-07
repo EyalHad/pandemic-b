@@ -8,9 +8,9 @@ using namespace std;
 using namespace pandemic;
 
 Scientist& Scientist::discover_cure(Color color){
-    cout << " Scientist->discover_cure( "+ Sity::toString(town)+ " )" << endl;
+    cout << " Scientist->discover_cure( "+ Sity::toString(t)+ " )" << endl;
     if (game.getCure(color)){return *this;}
-    else if(!game.getResearchS(this->town)) 
+    else if(!game.getResearchS(t)) 
         {throw invalid_argument ("Need to Build Research Station FIRST !, Cannot dicover_cure()");}
     int i = 0;
     for(auto& card : cards){
@@ -22,7 +22,7 @@ Scientist& Scientist::discover_cure(Color color){
         if (i == get()){ break; }
     }
     if (i != get()) {throw invalid_argument ("Need 5 Cards with Same Color !, Cannot dicover_cure()");}
-        
+    game.foundCure(color); 
     for(auto& card : cards){
         City town = card.first;
         Color townColor = game.getTown(town).color;

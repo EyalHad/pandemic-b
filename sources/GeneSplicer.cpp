@@ -9,18 +9,19 @@ using namespace std;
 using namespace pandemic;
 
 GeneSplicer& GeneSplicer::discover_cure(Color c){
-    cout << " GeneSplicer->discover_cure( "+ Sity::toString(town)+ " )" << endl;
+    cout << " GeneSplicer->discover_cure( "+ Sity::toString(t)+ " )" << endl;
     int i = 0;
     for(auto& card : cards){ 
         if (cards[card.first]){i++;}
-        else if( i == 5) { break; }
+        if( i == Player::NeededAmount) { break; }
     }
+    game.foundCure(c);
     for(auto& card : cards){ 
         if (cards[card.first]){
             cards[card.first] = false;
             i--;
         }
-        else if( i == 0) { break; }
+        if( i == 0) { break; }
     }
     return *this;
 }

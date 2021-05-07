@@ -17,9 +17,12 @@
         /** YELLOW */ 
         Bogota = 36, BuenosAires, Johannesburg, Khartoum, Kinshasa, Lagos = 41, Lima, LosAngeles, MexicoCity, Miami, Santiago, SaoPaulo = 47,
 
-         
+
 	};
+
 namespace Sity{
+
+
 
     inline std::string toString(City city){
 

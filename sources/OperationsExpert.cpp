@@ -8,6 +8,6 @@ using namespace std;
 using namespace pandemic;
 
 OperationsExpert& OperationsExpert::build(){
-    game.getTown(this->town).Reaserch = true;
+    game.getTown(t).Reaserch = true;
     return *this;
 }

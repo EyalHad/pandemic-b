@@ -10,7 +10,7 @@ namespace pandemic{
         int c;
     public:
         int get(){return c;}
-        Scientist(Board game, City town, int cards):Player(game, town),c(cards){}  
+        Scientist(Board game, City town, int cards):Player(game, town),c(cards){cout<< role() << endl;}  
         Scientist& discover_cure(Color);
         const std::string role() const{
             return "Scientist";

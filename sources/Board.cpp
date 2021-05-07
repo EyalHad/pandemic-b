@@ -4,7 +4,7 @@
 using namespace Sity;
 
 #include <iostream>
-
+#include <unordered_map>
 #include <map>
 #include <set>
 
@@ -27,11 +27,12 @@ namespace pandemic{
         {
             Node city;
             int i = 0;
-            string dummy;
+            string dummy; 
+            string space = " "; // For tidy :)
             unsigned long pos = 0;
             while (pos != string::npos)
             {
-                pos = line.find(" ");
+                pos = line.find(space);
                 dummy = line.substr(0,pos);
                 if (i == 0)
                 {
@@ -45,12 +46,13 @@ namespace pandemic{
                 line.erase(0,pos+1);
                 i++;   
             }
-            dummy = line;
-            _TownsMap[Sity::toCity(town)].reachable.insert(Sity::toCity(dummy));
+            cout << line << endl;
+            _TownsMap[Sity::toCity(town)].reachable.insert(Sity::toCity(line));
             
             
             
         }
+                cout << *this << endl;
            
     }
 
@@ -89,6 +91,7 @@ namespace pandemic{
             }
             os << "}\n";
         }
+
         
         return os;
     }

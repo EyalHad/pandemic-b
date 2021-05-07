@@ -6,7 +6,7 @@
 namespace pandemic{
     class Medic: public Player{
     public:
-        Medic(Board game, City town):Player(game, town){} 
+        Medic(Board game, City town):Player(game, town){cout<< role() << endl;} 
         Medic& treat(City);
         Medic& drive(City);
         Medic& fly_direct(City);

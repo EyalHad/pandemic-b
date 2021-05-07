@@ -6,7 +6,7 @@
 namespace pandemic{
     class GeneSplicer: public Player{
     public:
-        GeneSplicer(Board game, City town):Player(game, town){} 
+        GeneSplicer(Board game, City town):Player(game, town){ cout<< role() << endl;} 
         GeneSplicer& discover_cure(Color);
         const std::string role() const{
             return "GeneSplicer";

@@ -8,7 +8,7 @@ using namespace std;
 using namespace pandemic;
 
 Researcher& Researcher::discover_cure(Color color){
-    cout << " Researcher->discover_cure( "+ Sity::toString(town)+ " )" << endl;
+    cout << " Researcher->discover_cure( "+ Sity::toString(t)+ " )" << endl;
 
     if (game.getCure(color)){return *this;}
     int i = 0;
@@ -16,9 +16,10 @@ Researcher& Researcher::discover_cure(Color color){
         City town = card.first;
         Color townColor = game.getTown(town).color;
         if (cards[town] && townColor == color){ i++; }
-        if (i == 5){ break; }
+        if (i == Player::NeededAmount){ break; }
     }
-    if (i != 5) {throw invalid_argument ("Need 5 Cards with Same Color !, Cannot dicover_cure()");}
+    if (i != Player::NeededAmount) {throw invalid_argument ("Need 5 Cards with Same Color !, Cannot dicover_cure()");}
+    game.foundCure(color);
     for(auto& card : cards){
         City town = card.first;
         Color townColor = game.getTown(town).color;

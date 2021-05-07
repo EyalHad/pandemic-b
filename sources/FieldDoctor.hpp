@@ -6,7 +6,7 @@
 namespace pandemic{
     class FieldDoctor: public Player{
     public:
-        FieldDoctor(Board game, City town):Player(game, town){} 
+        FieldDoctor(Board game, City town):Player(game, town){ role();} 
         FieldDoctor& treat(City);
         const std::string role() const{
             return "FieldDoctor";
