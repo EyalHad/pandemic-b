@@ -6,8 +6,8 @@
 namespace pandemic{
     class Virologist: public Player{
     public:
-        Virologist(Board game, City town): Player(game, town){ cout<< role() << endl;}
-        Virologist& treat(City);
+        Virologist(Board& game, City town): Player(game, town){ cout<< role() << endl;}
+        Virologist& treat(const City&);
         const std::string role() const{return "Virologist";}
     };
 }

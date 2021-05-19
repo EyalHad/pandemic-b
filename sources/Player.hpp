@@ -15,7 +15,7 @@ namespace pandemic {
             City t;
 
         public:
-            Player(Board& game, City town): game(game), t(town){remove_cards();}
+            Player(Board& game, const City& town): game(game), t(town){remove_cards();}
             Player& take_card(const City&);
             virtual Player& drive(const City&);
             virtual Player& fly_charter(const City&);
@@ -31,6 +31,18 @@ namespace pandemic {
             Player& setCity(const City& town){
                 t = town;
                 return *this;
+            }
+
+            void printCards(){
+                for(const auto& ca : cards){
+                    if (ca.second)
+                    {
+                        cout << "\x1B[1;20;30m";
+                        cout << Sity::toString(ca.first);
+                        cout << "\033[0m" << endl;
+                    }
+                    
+                }
             }
 
             virtual const string role(){ return "Player";}

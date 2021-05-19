@@ -7,15 +7,23 @@
 using namespace std;
 using namespace pandemic;
 
-FieldDoctor& FieldDoctor::treat(City town){
-    cout << " FieldDoctor->treat( "+ Sity::toString(town)+ " )" << endl;
-    if(game.getTown(t).reachable.find(town) == game.getTown(t).reachable.end()){
-        throw invalid_argument("Do not in requested/Neighbor City, City Current: "+Sity::toString(t)
-        +"Tried to: "+Sity::toString(town)+" Cannot use treat()");
+FieldDoctor& FieldDoctor::treat(const City& town){
+    // cout << " FieldDoctor->treat( "+ Sity::toString(town)+ " )" << endl;
+
+
+    if (game.getTown(t).reachable.count(town) > 0 || t == town){
+                City dummy = t;
+    try {
+
+        setCity(town);
+        Player::treat(town);
+        setCity(dummy);
+    } catch( const exception& e) {setCity(dummy); throw e;}
+    }else{
+        throw invalid_argument{"kasbdklbas"};
     }
-    else if (game.getCure(game.getTown(town).color)){
-        game[town] = 0;
-    }else{ game[town]--;}
+
+
     
     return *this;
 }

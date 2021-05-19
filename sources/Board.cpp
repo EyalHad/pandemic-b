@@ -38,6 +38,8 @@ namespace pandemic{
                 {
                     town = dummy;
                     _TownsMap[Sity::toCity(town)];
+                    _TownsMap[Sity::toCity(town)].diseaseCount = 0;
+                    _TownsMap[Sity::toCity(town)].Reaserch = false;
                 }else if (i ==1){
                     _TownsMap[Sity::toCity(town)].color = Sity::toColor(dummy);
                 }else{
@@ -46,26 +48,29 @@ namespace pandemic{
                 line.erase(0,pos+1);
                 i++;   
             }
-            cout << line << endl;
+
             _TownsMap[Sity::toCity(town)].reachable.insert(Sity::toCity(line));
             
             
-            
         }
-                cout << *this << endl;
+
            
     }
 
     int& Board::operator[] (const City& town){
-        if (_TownsMap.find(town) != _TownsMap.end()){
-        return _TownsMap[town].diseaseCount;}
-        else{ throw invalid_argument("This: "+Sity::toString(town)+" Outside The Game Map :(");}
+        return _TownsMap[town].diseaseCount;
     }
 
 
     ostream& operator<< (ostream& os, const Board& game) {
         for (auto& Town: game._TownsMap)
         {   
+            if (Town.second.diseaseCount != 0)
+            {
+                cout << "Has Disease" << "Name: \x1B[36m\033[32m[" << Sity::toString( Town.first) << "]" 
+                << " ===>" << Town.second.diseaseCount  << endl;
+            }
+            
             os <<  "[";
             switch (Town.second.color)
             {
